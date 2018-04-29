@@ -21,7 +21,7 @@ User_Check(){
   cat /etc/*-release |grep ID |cut  -d "=" -f "2" |egrep "^\"centos\"$|^\"fedora\"$" &> /dev/null
   if [[ $? -eq 0 ]] ;then
       Distro_Val="centos"
-      echo "this is Centos"
+      mkdir -p $LogFolder
   else
     echo "This script is for RedHat distributions only"
     exit 1
@@ -31,7 +31,7 @@ User_Check(){
 #checking for updates
 Update_Check(){
   echo "Updating, this might take a few minutes."
-  sleep 5
+  sleep 3
   if [[ -d $LogFolder/Updates ]]; then
       :
     else
