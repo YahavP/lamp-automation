@@ -35,7 +35,7 @@ Update_Check(){
   if [[ -d $LogFolder/Updates ]]; then
       :
     else
-      mkdir $LogFolder/Updates
+      mkdir -p $LogFolder/Updates
     fi
   yum -y update &>> $LogFolder/Updates/Updates.log
   if [[ $? -eq 0 ]] ;then
