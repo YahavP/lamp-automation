@@ -7,7 +7,7 @@
 #Version : 1.1.1
 ########################################################################
 
-$LogFolder= /var/log/LAMPScript
+$LogFolder=/var/log/LAMPScript
 
 #checks if the user uses root
 RootCheck(){
@@ -260,7 +260,6 @@ Php7(){
     esac
 done
 }
-  }
 #main menu
   Main(){
     echo "Welcome to YahavP's LAMP automation script."
