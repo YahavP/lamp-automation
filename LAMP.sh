@@ -7,7 +7,7 @@
 #Version : 1.1.1
 ########################################################################
 
-$LogFolder=/var/log/LAMPScript
+$LogFolder="/var/log/LAMPScript"
 
 #checks if the user uses root
 RootCheck(){
@@ -269,21 +269,21 @@ done
     select opt in $MAINS; do
       case $opt in
           "1")
-              if [[ -d $LogFolder/WebFolder ]]; then:
+              if [[ -d $LogFolder/WebFolder ]]; then :
               else
                  mkdir $LogFolder/WebFolder
               fi
                Main_Web
               ;;
           "2")
-               if [[ -d $LogFolder/DBFolder ]]; then:
+               if [[ -d $LogFolder/DBFolder ]]; then :
                else
                   mkdir $LogFolder/DBFolder
                fi
                Main_DB
               ;;
            "3")
-               if [[ -d $LogFolder/LanFolder ]]; then:
+               if [[ -d $LogFolder/LanFolder ]]; then :
                else
                   mkdir $LogFolder/LanFolder
                fi
