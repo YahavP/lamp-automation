@@ -7,7 +7,7 @@
 #Version : 1.1.1
 ########################################################################
 
-$LogFolder="/var/log/LAMPScript"
+LogFolder="/var/log/LAMPScript"
 
 #checks if the user uses root
 RootCheck(){
