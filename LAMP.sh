@@ -41,9 +41,9 @@ Update_Check(){
   if [[ $? -eq 0 ]] ;then
       echo "Update succeeded"
   else
-    echo "Something went wrong, Exiting."
+    echo "Update failed,Rerurning to the main menu. For more information check /var/log/LAMPScript/Updates/Updates.log"
     sleep 3
-    exit 1
+    main
   fi
 }
 
@@ -54,7 +54,7 @@ Apache(){
   if [[ $? -eq 0 ]] ;then
       echo "Done"
   else
-      echo "Something went wrong, Exiting. Rerurning to the web server menu."
+      echo "Something went wrong.Rerurning to the web server menu. For more information check /var/log/LAMPScript/WebFolder/Apache.log"
       sleep 3
       Main_Web
   fi
@@ -65,6 +65,10 @@ Apache(){
         "Y")
             echo "Deleting the welcome page"
             rm -f /etc/httpd/conf.d/welcome.conf &>> $LogFolder/WebFolder/Apache.log
+            if [[ $? -eq 0 ]] ;then
+                echo "Done"
+            else
+                echo "Something went wrong.Rerurning to the web server menu. For more information check /var/log/LAMPScript/WebFolder/Apache.log"
             Main
             ;;
         "N")
@@ -84,7 +88,7 @@ Nginx(){
   if [[ $? -eq 0 ]] ;then
     echo "Done"
   else
-    echo "Something went wrong, Exiting. Rerurning to the web server menu."
+    echo "Something went wrong.Rerurning to the web server menu. For more information check /var/log/LAMPScript/WebFolder/Nginx.log"
     sleep 3
     Main_Web
   fi
@@ -92,7 +96,7 @@ Nginx(){
   if [[ $? -eq 0 ]] ;then
       echo "Done"
   else
-    echo "Something went wrong, Exiting. Rerurning to the web server menu."
+    echo "Something went wrong.Rerurning to the web server menu. For more information check /var/log/LAMPScript/WebFolder/Nginx.log"
     sleep 3
     Main_Web
   fi
@@ -124,7 +128,7 @@ Mariadb(){
   if [[ $? -eq 0 ]] ;then
     echo "Done"
   else
-    echo "Something went wrong, Exiting. Rerurning to the DB server menu."
+    echo "Something went wrong.Rerurning to the DB server menu. For more information check /var/log/LAMPScript/DBFolder/Mariadb.log"
     sleep 3
     Main_DB
   fi
@@ -138,7 +142,7 @@ SQLServer(){
   if [[ $? -eq 0 ]] ;then
       echo "Done"
   else
-    echo "Something went wrong, Exiting. Rerurning to the DB server menu."
+    echo "Something went wrong.Rerurning to the DB server menu. For more information check /var/log/LAMPScript/DBFolder/SQLServer.log"
     sleep 3
     Main_DB
   fi
@@ -146,7 +150,7 @@ SQLServer(){
   if [[ $? -eq 0 ]] ;then
       echo "Done"
   else
-    echo "Something went wrong, Exiting. Rerurning to the DB server menu."
+    echo "Something went wrong.Rerurning to the DB server menu. For more information check /var/log/LAMPScript/DBFolder/SQLServer.log"
     sleep 3
     Main_DB
   fi
@@ -154,7 +158,7 @@ SQLServer(){
    if [[ $? -eq 0 ]] ;then
        echo "Done"
     else
-     echo "Something went wrong, Exiting. Rerurning to the DB server menu."
+     echo "Something went wrong.Rerurning to the DB server menu. For more information check /var/log/LAMPScript/DBFolder/SQLServer.log"
      sleep 3
      Main_DB
    fi
@@ -167,7 +171,7 @@ PostgreSQL(){
    if [[ $? -eq 0 ]] ;then
        echo "Done"
     else
-     echo "Something went wrong, Exiting. Rerurning to the DB server menu."
+     echo "Something went wrong.Rerurning to the DB server menu. For more information check /var/log/LAMPScript/DBFolder/PostgreSQL.log"
      sleep 3
      Main_DB
    fi
@@ -204,7 +208,7 @@ PostgreSQL(){
      if [[ $? -eq 0 ]] ;then
          echo "Done"
       else
-       echo "Something went wrong, Exiting. Rerurning to the languages menu."
+       echo "Something went wrong.Rerurning to the languages menu. For more information check /var/log/LAMPScript/LanFolder/Python3.log"
        sleep 3
        Main_Lan
      fi
@@ -218,7 +222,7 @@ Php7(){
    if [[ $? -eq 0 ]] ;then
        echo "Done"
     else
-      echo "Something went wrong, Exiting. Rerurning to the languages menu."
+      echo "Something went wrong.Rerurning to the languages menu. For more information check /var/log/LAMPScript/LanFolder/Php7.log"
       sleep 3
       Main_Lan
    fi
@@ -232,7 +236,7 @@ Php7(){
     if [[ $? -eq 0 ]] ;then
         echo "Done"
     else
-      echo "Something went wrong, Exiting. Rerurning to the languages menu."
+     echo "Something went wrong.Rerurning to the languages menu. For more information check /var/log/LAMPScript/LanFolder/Ruby2.log"
      sleep 3
      Main_Lan
     fi
@@ -271,21 +275,21 @@ done
           "1")
               if [[ -d $LogFolder/WebFolder ]]; then :
               else
-                 mkdir $LogFolder/WebFolder
+                 mkdir -p $LogFolder/WebFolder
               fi
                Main_Web
               ;;
           "2")
                if [[ -d $LogFolder/DBFolder ]]; then :
                else
-                  mkdir $LogFolder/DBFolder
+                  mkdir -p $LogFolder/DBFolder
                fi
                Main_DB
               ;;
            "3")
                if [[ -d $LogFolder/LanFolder ]]; then :
                else
-                  mkdir $LogFolder/LanFolder
+                  mkdir -p $LogFolder/LanFolder
                fi
                Main_Lan
                ;;
